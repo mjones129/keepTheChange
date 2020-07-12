@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/coin-flip-shimmer.ogg-ef80c99dbc8dec7f61bf98989e07e316.oggstr"
+
+[deps]
+
+source_file="res://audio/coin-flip-shimmer.ogg"
+dest_files=[ "res://.import/coin-flip-shimmer.ogg-ef80c99dbc8dec7f61bf98989e07e316.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

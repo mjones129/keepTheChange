@@ -1,9 +1,9 @@
 extends Control
 
 var dialog = [
-	"Tap anywhere to hit the machine!",
-	"This is another line of dialog just for testing purposes.",
-	"Also, I always thought dialog was spelled dialogue."
+	"Keep as much change as you can!",
+	"Tap anywhere to bang on the machine!",
+	"Good luck, have fun."
 ]
 
 var dialog_index = 0

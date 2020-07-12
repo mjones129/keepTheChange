@@ -29,3 +29,4 @@ __meta__ = {
 [node name="jumpButton" type="TouchScreenButton" parent="Control"]
 shape = SubResource( 1 )
 action = "jump"
+[connection signal="pressed" from="Control/jumpButton" to="." method="_on_jumpButton_pressed"]

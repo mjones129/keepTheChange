@@ -1,24 +1,27 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://coin.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rail.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Intro.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Stage1.gd" type="Script" id=4]
 [ext_resource path="res://audio/insert-coin.ogg" type="AudioStream" id=5]
 [ext_resource path="res://TouchControl.tscn" type="PackedScene" id=6]
-[ext_resource path="res://allCoins.gd" type="Script" id=7]
 [ext_resource path="res://audio/metal-bang-1.ogg" type="AudioStream" id=8]
+[ext_resource path="res://coin2.tscn" type="PackedScene" id=9]
 
 [node name="Stage1" type="Node2D"]
 script = ExtResource( 4 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+pause_mode = 2
 
 [node name="Intro" parent="CanvasLayer" instance=ExtResource( 3 )]
+visible = false
 
 [node name="TouchControl" parent="CanvasLayer" instance=ExtResource( 6 )]
+visible = false
 
 [node name="insertCoin" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
 stream = ExtResource( 5 )
 autoplay = true
 
@@ -27,30 +30,11 @@ wait_time = 0.5
 one_shot = true
 autostart = true
 
-[node name="allCoins" type="Node2D" parent="."]
-script = ExtResource( 7 )
-
-[node name="coin" parent="allCoins" instance=ExtResource( 1 )]
-position = Vector2( 378.342, 156.763 )
-
-[node name="coin2" parent="allCoins" instance=ExtResource( 1 )]
-position = Vector2( 280.365, 87.4257 )
-
-[node name="coin3" parent="allCoins" instance=ExtResource( 1 )]
-position = Vector2( 509.481, 76.8743 )
-
-[node name="coin4" parent="allCoins" instance=ExtResource( 1 )]
-position = Vector2( 556.208, 55.7716 )
-
-[node name="coin5" parent="allCoins" instance=ExtResource( 1 )]
-position = Vector2( 387.386, 52.7569 )
-
 [node name="allRails" type="Node2D" parent="."]
 
 [node name="rail" parent="allRails" instance=ExtResource( 2 )]
 position = Vector2( 124.823, 141.034 )
 rotation = 0.380482
-scale = Vector2( 1, 1 )
 
 [node name="rail2" parent="allRails" instance=ExtResource( 2 )]
 position = Vector2( 261.102, 298.434 )
@@ -73,4 +57,22 @@ position = Vector2( 613.366, 568.195 )
 
 [node name="machineBang" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
+
+[node name="all2Coins" type="Node2D" parent="."]
+
+[node name="RigidBody2D" parent="all2Coins" instance=ExtResource( 9 )]
+position = Vector2( 321.064, 102.499 )
+
+[node name="RigidBody2D2" parent="all2Coins" instance=ExtResource( 9 )]
+position = Vector2( 485.364, 116.065 )
+
+[node name="RigidBody2D3" parent="all2Coins" instance=ExtResource( 9 )]
+position = Vector2( 444.665, 201.984 )
+
+[node name="RigidBody2D4" parent="all2Coins" instance=ExtResource( 9 )]
+position = Vector2( 587.863, 164.3 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+smoothing_enabled = true
 [connection signal="timeout" from="Timer" to="CanvasLayer/Intro" method="_on_Timer_timeout"]

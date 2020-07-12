@@ -12,5 +12,8 @@ func _ready():
 
 
 func _physics_process(delta):
-	if InputEventScreenTouch:
-		Input.is_action_just_pressed("jump")
+	pass
+
+
+func _on_jumpButton_pressed():
+	Input.is_action_just_pressed("jump")

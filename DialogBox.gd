@@ -13,7 +13,7 @@ func _ready():
 	load_dialog()
 	
 func _process(delta):
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("jump"):
 		load_dialog()
 	
 func load_dialog():

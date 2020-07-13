@@ -10,6 +10,7 @@ func _physics_process(delta):
 	print(averageEverything())
 	positionCamera()
 	
+		
 func addEverything():
 	var sum = Vector2(0, 0)
 	for i in range(0, allCoins.size()):
@@ -28,3 +29,8 @@ func positionCamera():
 
 func _on_jumpButton_pressed():
 	pass
+
+
+func _on_outOfBounds_body_entered(body):
+	body.get_parent().remove_child(body)
+	gather_coins()

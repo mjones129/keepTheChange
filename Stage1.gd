@@ -1,15 +1,12 @@
  
 extends Node2D
 
-var allCoins = Array()
-var Global = preload("res://Global.gd")
-
 func _ready():
 	gather_coins()
+#	$"/root/Global".Stage1 = self
 	
-
-func _physics_process(delta):
-	print(allCoins.size())
+func _physics_process(_delta):
+	print("Final Score: " + str($"/root/Global".finalScore))
 	#set camera position
 	positionCamera()
 	
@@ -17,34 +14,50 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump"):
 		$machineBang.play()
 	
-	#display score
+	#display number of coins remaining
+	$CanvasLayer/Control/HBoxContainer/coinsRemaining.set_text("COINS REMAINING: " + str($"/root/Global".coinsRemaining))
 	
-	$CanvasLayer/Control/MarginContainer/RichTextLabel.set_text("COINS REMAINING: " + str($"/root/Global".coinsRemaining))
+	#display final score
+	$CanvasLayer/Control/HBoxContainer/finalScore.set_text("FINAL SCORE: " + str($"/root/Global".finalScore))
+	
+	
+	if $"/root/Global".allCoins.size() == 0:
+		#load the ending game screen
+		get_tree().reload_current_scene()
 		
 func addEverything():
 	var sum = Vector2(0, 0)
-	for i in range(0, allCoins.size()):
-		sum = allCoins[i].get_position() + sum
+	for i in range(0, $"/root/Global".allCoins.size()):
+		sum = $"/root/Global".allCoins[i].get_position() + sum
 	return sum
 	
 func gather_coins():
-	allCoins.clear()
-	for i in get_node("all2Coins").get_children():
-		allCoins.append(i)
-	$"/root/Global".coinsRemaining = allCoins.size()
+	$"/root/Global".allCoins.clear()
+	for i in $"all2Coins".get_children():
+		$"/root/Global".allCoins.append(i)
 	
 	
 func averageEverything():
-	return (addEverything() / allCoins.size())
+	return (addEverything() / $"/root/Global".allCoins.size())
 	
 func positionCamera():
 	$Camera2D.position = averageEverything()
 
 func _on_jumpButton_pressed():
 	pass
-
+	
 
 func _on_outOfBounds_body_entered(body):
 	body.get_parent().remove_child(body)
 	gather_coins()
-	
+
+
+func _on_Area2D_body_entered(body):
+	body.get_parent().remove_child(body)
+	gather_coins()
+
+
+func _on_coinTray_body_entered(body):
+	$"/root/Global".finalScore = $"/root/Global".finalScore + 1
+	body.get_parent().remove_child(body)
+	gather_coins()

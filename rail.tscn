@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://coinRail_scaled.png" type="Texture" id=1]
+
+[sub_resource type="PhysicsMaterial" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 122.096, 10 )
 
 [node name="rail" type="StaticBody2D"]
+physics_material_override = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 9.78753 )

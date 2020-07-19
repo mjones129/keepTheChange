@@ -1,14 +1,21 @@
- 
-extends Node2D
+ extends Node2D
+
+var pings = []
 
 func _ready():
 	gather_coins()
-#	$"/root/Global".Stage1 = self
 	
+	#loop all the pings into an array
+	for i in $Control.get_children():
+		pings.append(i)
+		
 func _physics_process(_delta):
-	print("Final Score: " + str($"/root/Global".finalScore))
 	#set camera position
 	positionCamera()
+
+	#print sounds array
+	print(pings)
+	
 	
 	#bang on the machine
 	if Input.is_action_just_pressed("jump"):
@@ -61,3 +68,11 @@ func _on_coinTray_body_entered(body):
 	$"/root/Global".finalScore = $"/root/Global".finalScore + 1
 	body.get_parent().remove_child(body)
 	gather_coins()
+
+
+func _on_RigidBody2D_body_entered(body):
+	#play a random ping on contact
+	pings.shuffle()
+	pings[0].play()
+
+

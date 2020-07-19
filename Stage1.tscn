@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://outOfBounds.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rail.tscn" type="PackedScene" id=2]
@@ -22,16 +22,24 @@
 [ext_resource path="res://metalPlate (1).png" type="Texture" id=20]
 [ext_resource path="res://coinTray.tscn" type="PackedScene" id=21]
 [ext_resource path="res://fonts/ratchet-clank-psp.ttf" type="DynamicFontData" id=22]
+[ext_resource path="res://audio/clinks/c1.wav" type="AudioStream" id=23]
+[ext_resource path="res://audio/clinks/c2.wav" type="AudioStream" id=24]
+[ext_resource path="res://audio/clinks/c3.wav" type="AudioStream" id=25]
+[ext_resource path="res://audio/clinks/c4.wav" type="AudioStream" id=26]
+[ext_resource path="res://audio/clinks/c5.wav" type="AudioStream" id=27]
+[ext_resource path="res://audio/clinks/c6.wav" type="AudioStream" id=28]
+[ext_resource path="res://audio/clinks/c8.wav" type="AudioStream" id=29]
+[ext_resource path="res://audio/clinks/c7.wav" type="AudioStream" id=30]
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=1]
 size = 30
 font_data = ExtResource( 22 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 size = 30
 font_data = ExtResource( 22 )
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 7 ), ExtResource( 19 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
 "loop": true,
@@ -39,7 +47,7 @@ animations = [ {
 "speed": 24.0
 } ]
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=4]
 script/source = "extends Area2D
 
 onready var Stage1 = load(\"res://Stage1.gd\").new()
@@ -64,6 +72,7 @@ pause_mode = 2
 [node name="Intro" parent="CanvasLayer" instance=ExtResource( 3 )]
 
 [node name="TouchControl" parent="CanvasLayer" instance=ExtResource( 6 )]
+visible = false
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
@@ -75,6 +84,7 @@ __meta__ = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control"]
 anchor_right = 1.0
+margin_left = 20.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 0
@@ -83,29 +93,29 @@ __meta__ = {
 }
 
 [node name="coinsRemaining" type="RichTextLabel" parent="CanvasLayer/Control/HBoxContainer"]
-margin_right = 341.0
+margin_right = 334.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 0, 50 )
 size_flags_horizontal = 3
-custom_fonts/normal_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 bbcode_text = "Your Score Will Go Here!"
 text = "Your Score Will Go Here!"
 
 [node name="Control" type="Control" parent="CanvasLayer/Control/HBoxContainer"]
-margin_left = 341.0
-margin_right = 682.0
+margin_left = 334.0
+margin_right = 668.0
 margin_bottom = 50.0
 size_flags_horizontal = 3
 
 [node name="finalScore" type="RichTextLabel" parent="CanvasLayer/Control/HBoxContainer"]
-margin_left = 682.0
-margin_right = 1024.0
+margin_left = 668.0
+margin_right = 1004.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 0, 50 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/normal_font = SubResource( 3 )
+custom_fonts/normal_font = SubResource( 2 )
 bbcode_text = "FINAL SCORE:"
 text = "FINAL SCORE:"
 
@@ -171,23 +181,35 @@ stream = ExtResource( 8 )
 [node name="all2Coins" type="Node2D" parent="."]
 
 [node name="RigidBody2D" parent="all2Coins" instance=ExtResource( 9 )]
-position = Vector2( 321.064, 102.499 )
+position = Vector2( 295.064, 101.499 )
+contacts_reported = 1
 
 [node name="RigidBody2D2" parent="all2Coins" instance=ExtResource( 9 )]
-position = Vector2( 485.364, 116.065 )
+position = Vector2( 538.064, 124.499 )
+contacts_reported = 1
 
 [node name="RigidBody2D3" parent="all2Coins" instance=ExtResource( 9 )]
-position = Vector2( 444.665, 201.984 )
+position = Vector2( 493.064, 111.499 )
+contacts_reported = 1
 
 [node name="RigidBody2D4" parent="all2Coins" instance=ExtResource( 9 )]
-position = Vector2( 587.863, 164.3 )
+position = Vector2( 431.064, 88.499 )
+contacts_reported = 1
 
 [node name="RigidBody2D5" parent="all2Coins" instance=ExtResource( 9 )]
-position = Vector2( 391.788, 118.353 )
+position = Vector2( 360.064, 95.499 )
+contacts_reported = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+zoom = Vector2( 1.5, 1.5 )
+limit_left = -10000
+limit_top = -10000
+limit_right = 10000
+limit_bottom = 10000
+limit_smoothed = true
 smoothing_enabled = true
+editor_draw_limits = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -196,8 +218,8 @@ smoothing_enabled = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="ParallaxBackground/ParallaxLayer"]
 position = Vector2( 698.962, 390.92 )
 scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 1 )
-frame = 8
+frames = SubResource( 3 )
+frame = 1
 playing = true
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -226,23 +248,79 @@ rotation = -1.32296
 [node name="Area2D2" parent="allOutOfBounds" instance=ExtResource( 1 )]
 position = Vector2( 208.912, 1178.13 )
 rotation = 0.66148
-script = SubResource( 2 )
+script = SubResource( 4 )
+
+[node name="Area2D5" parent="allOutOfBounds" instance=ExtResource( 1 )]
+position = Vector2( 513.718, 1496.63 )
+rotation = 0.66148
+script = SubResource( 4 )
 
 [node name="Area2D4" parent="allOutOfBounds" instance=ExtResource( 1 )]
 position = Vector2( -236.31, 599.338 )
 rotation = 0.881391
-script = SubResource( 2 )
+script = SubResource( 4 )
 
 [node name="Area2D3" parent="allOutOfBounds" instance=ExtResource( 1 )]
 position = Vector2( 1465.81, 1140.45 )
 rotation = -0.808087
-script = SubResource( 2 )
+script = SubResource( 4 )
+
+[node name="Area2D6" parent="allOutOfBounds" instance=ExtResource( 1 )]
+position = Vector2( 1150.73, 1537.73 )
+rotation = -0.808087
+script = SubResource( 4 )
 
 [node name="coinTray" parent="." instance=ExtResource( 21 )]
 position = Vector2( 863.046, 1476.08 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="c1" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource( 23 )
+volume_db = -15.0
+
+[node name="c2" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource( 24 )
+volume_db = -15.0
+
+[node name="c3" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource( 25 )
+volume_db = -15.0
+
+[node name="c4" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource( 26 )
+volume_db = -15.0
+
+[node name="c5" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource( 27 )
+volume_db = -15.0
+
+[node name="c6" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource( 28 )
+volume_db = -15.0
+
+[node name="c7" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource( 30 )
+volume_db = -15.0
+
+[node name="c8" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource( 29 )
+volume_db = -15.0
 [connection signal="timeout" from="Timer" to="CanvasLayer/Intro" method="_on_Timer_timeout"]
+[connection signal="body_entered" from="all2Coins/RigidBody2D" to="." method="_on_RigidBody2D_body_entered"]
+[connection signal="body_entered" from="all2Coins/RigidBody2D2" to="." method="_on_RigidBody2D_body_entered"]
+[connection signal="body_entered" from="all2Coins/RigidBody2D3" to="." method="_on_RigidBody2D_body_entered"]
+[connection signal="body_entered" from="all2Coins/RigidBody2D4" to="." method="_on_RigidBody2D_body_entered"]
+[connection signal="body_entered" from="all2Coins/RigidBody2D5" to="." method="_on_RigidBody2D_body_entered"]
 [connection signal="body_entered" from="allOutOfBounds/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="allOutOfBounds/Area2D2" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="allOutOfBounds/Area2D5" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="allOutOfBounds/Area2D4" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="allOutOfBounds/Area2D3" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="allOutOfBounds/Area2D6" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="coinTray" to="." method="_on_coinTray_body_entered"]

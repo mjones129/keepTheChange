@@ -3,7 +3,6 @@ extends Control
 var dialog = [
 	"Keep as much change as you can!",
 	"Tap anywhere to bang on the machine!",
-	"Good luck, have fun."
 ]
 
 var dialog_index = 0

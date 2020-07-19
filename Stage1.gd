@@ -19,6 +19,7 @@ func _physics_process(_delta):
 	
 	#bang on the machine
 	if Input.is_action_just_pressed("jump"):
+		$Camera2D.shake(0.2, 15, 8)
 		$machineBang.play()
 	
 	#display number of coins remaining

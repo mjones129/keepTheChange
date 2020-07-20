@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="My First Game Jam 2020"
-run/main_scene="res://Stage1.tscn"
+run/main_scene="res://IntroCutscene.tscn"
 boot_splash/image="res://profile_128.png"
 config/icon="res://icon.png"
 

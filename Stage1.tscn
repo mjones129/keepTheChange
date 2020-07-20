@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://outOfBounds.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rail.tscn" type="PackedScene" id=2]
@@ -19,7 +19,7 @@
 [ext_resource path="res://gearLoop1/0002.png" type="Texture" id=17]
 [ext_resource path="res://gearLoop1/0003.png" type="Texture" id=18]
 [ext_resource path="res://gearLoop1/0005.png" type="Texture" id=19]
-[ext_resource path="res://metalPlate (1).png" type="Texture" id=20]
+[ext_resource path="res://background2.png" type="Texture" id=20]
 [ext_resource path="res://coinTray.tscn" type="PackedScene" id=21]
 [ext_resource path="res://fonts/ratchet-clank-psp.ttf" type="DynamicFontData" id=22]
 [ext_resource path="res://audio/clinks/c1.wav" type="AudioStream" id=23]
@@ -31,6 +31,12 @@
 [ext_resource path="res://audio/clinks/c8.wav" type="AudioStream" id=29]
 [ext_resource path="res://audio/clinks/c7.wav" type="AudioStream" id=30]
 [ext_resource path="res://Camera2D.gd" type="Script" id=31]
+[ext_resource path="res://audio/bangs/Impact Metal Bang With Rebound 01.wav" type="AudioStream" id=32]
+[ext_resource path="res://audio/bangs/Impact Metal Bang 29.wav" type="AudioStream" id=33]
+[ext_resource path="res://audio/bangs/Impact Metal Bang 02.wav" type="AudioStream" id=34]
+[ext_resource path="res://audio/bangs/Impact Metal Bang 01.wav" type="AudioStream" id=35]
+[ext_resource path="res://audio/Slot machine win - single coin falling into pay out slot 4.wav" type="AudioStream" id=36]
+[ext_resource path="res://audio/poof.wav" type="AudioStream" id=37]
 
 [sub_resource type="DynamicFont" id=1]
 size = 30
@@ -131,24 +137,20 @@ autostart = true
 
 [node name="allRails" type="Node2D" parent="."]
 
-[node name="rail" parent="allRails" instance=ExtResource( 2 )]
-position = Vector2( 124.823, 141.034 )
-rotation = 0.380482
-
 [node name="rail2" parent="allRails" instance=ExtResource( 2 )]
-position = Vector2( 261.102, 298.434 )
+position = Vector2( 90.3371, 347.766 )
 rotation = 0.574213
 
 [node name="rail3" parent="allRails" instance=ExtResource( 2 )]
-position = Vector2( 367.492, 377.862 )
+position = Vector2( 2223.14, 647.291 )
 rotation = 0.226893
 
 [node name="rail4" parent="allRails" instance=ExtResource( 2 )]
-position = Vector2( 762.338, 507.563 )
+position = Vector2( 2636.96, 758.018 )
 rotation = -0.624828
 
 [node name="rail5" parent="allRails" instance=ExtResource( 2 )]
-position = Vector2( 486.75, 471.725 )
+position = Vector2( 338.754, 543.826 )
 rotation = 0.79587
 
 [node name="rail6" parent="allRails" instance=ExtResource( 2 )]
@@ -156,48 +158,40 @@ position = Vector2( 577.996, 711.034 )
 rotation = 0.567232
 
 [node name="rail7" parent="allRails" instance=ExtResource( 2 )]
-position = Vector2( 770.77, 862.961 )
-rotation = 0.780162
+position = Vector2( 778.359, 859.166 )
+rotation = 0.354302
 
 [node name="rail8" parent="allRails" instance=ExtResource( 2 )]
-position = Vector2( 1273.17, 871.367 )
-rotation = -0.42586
+position = Vector2( 1473.2, 996.546 )
+rotation = -0.0715585
 
 [node name="rail9" parent="allRails" instance=ExtResource( 2 )]
-position = Vector2( 1048.85, 992.951 )
-rotation = -0.42586
+position = Vector2( 1227.97, 992.951 )
 
 [node name="rail10" parent="allRails" instance=ExtResource( 2 )]
-position = Vector2( 1025.07, 1235.62 )
-rotation = -0.710349
+position = Vector2( 1691.62, 1047.7 )
+rotation = 0.21293
 
 [node name="rail11" parent="allRails" instance=ExtResource( 2 )]
-position = Vector2( 696.412, 1179.89 )
-rotation = 0.63879
+position = Vector2( 2337.82, 1276.79 )
+rotation = -0.42586
 
-[node name="machineBang" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 8 )
+[node name="rail12" parent="allRails" instance=ExtResource( 2 )]
+position = Vector2( 2565.51, 1106.02 )
+rotation = -1.34914
+
+[node name="rail" parent="allRails" instance=ExtResource( 2 )]
+position = Vector2( 1960.03, 1124.7 )
+rotation = 0.380482
 
 [node name="all2Coins" type="Node2D" parent="."]
-
-[node name="RigidBody2D" parent="all2Coins" instance=ExtResource( 9 )]
-position = Vector2( 295.064, 101.499 )
-contacts_reported = 1
 
 [node name="RigidBody2D2" parent="all2Coins" instance=ExtResource( 9 )]
 position = Vector2( 538.064, 124.499 )
 contacts_reported = 1
 
 [node name="RigidBody2D3" parent="all2Coins" instance=ExtResource( 9 )]
-position = Vector2( 493.064, 111.499 )
-contacts_reported = 1
-
-[node name="RigidBody2D4" parent="all2Coins" instance=ExtResource( 9 )]
-position = Vector2( 431.064, 88.499 )
-contacts_reported = 1
-
-[node name="RigidBody2D5" parent="all2Coins" instance=ExtResource( 9 )]
-position = Vector2( 360.064, 95.499 )
+position = Vector2( 390.068, 109.32 )
 contacts_reported = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -215,24 +209,25 @@ script = ExtResource( 31 )
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 1000, 1000 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="ParallaxBackground/ParallaxLayer"]
 position = Vector2( 698.962, 390.92 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 3 )
-frame = 2
+frame = 7
 playing = true
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
 visible = false
 motion_scale = Vector2( 0.5, 0.5 )
-motion_mirroring = Vector2( 512, 512 )
+motion_mirroring = Vector2( 1500, 1500 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
-modulate = Color( 0.188235, 0.180392, 0.180392, 1 )
+scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 20 )
 centered = false
 
@@ -243,17 +238,17 @@ centered = false
 [node name="allOutOfBounds" type="Node2D" parent="."]
 
 [node name="Area2D" parent="allOutOfBounds" instance=ExtResource( 1 )]
-position = Vector2( 1726.09, 465.771 )
-rotation = -1.32296
+position = Vector2( 2372.08, 1528.72 )
+rotation = -0.294961
 
 [node name="Area2D2" parent="allOutOfBounds" instance=ExtResource( 1 )]
-position = Vector2( 208.912, 1178.13 )
-rotation = 0.66148
+position = Vector2( 781.923, 1125 )
+rotation = 1.10305
 script = SubResource( 4 )
 
 [node name="Area2D5" parent="allOutOfBounds" instance=ExtResource( 1 )]
-position = Vector2( 513.718, 1496.63 )
-rotation = 0.66148
+position = Vector2( 1094.32, 1295.51 )
+rotation = -0.881391
 script = SubResource( 4 )
 
 [node name="Area2D4" parent="allOutOfBounds" instance=ExtResource( 1 )]
@@ -262,17 +257,17 @@ rotation = 0.881391
 script = SubResource( 4 )
 
 [node name="Area2D3" parent="allOutOfBounds" instance=ExtResource( 1 )]
-position = Vector2( 1465.81, 1140.45 )
-rotation = -0.808087
+position = Vector2( 1815.23, 1395.91 )
+rotation = 0.95644
 script = SubResource( 4 )
 
 [node name="Area2D6" parent="allOutOfBounds" instance=ExtResource( 1 )]
-position = Vector2( 1150.73, 1537.73 )
-rotation = -0.808087
+position = Vector2( 2859.41, 1102.61 )
+rotation = -1.1013
 script = SubResource( 4 )
 
 [node name="coinTray" parent="." instance=ExtResource( 21 )]
-position = Vector2( 863.046, 1476.08 )
+position = Vector2( 2119.79, 1402.67 )
 
 [node name="Control" type="Control" parent="."]
 margin_right = 40.0
@@ -312,12 +307,44 @@ volume_db = -15.0
 [node name="c8" type="AudioStreamPlayer" parent="Control"]
 stream = ExtResource( 29 )
 volume_db = -15.0
+
+[node name="bangs" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bang1" type="AudioStreamPlayer" parent="bangs"]
+stream = ExtResource( 35 )
+volume_db = -10.0
+
+[node name="bang2" type="AudioStreamPlayer" parent="bangs"]
+stream = ExtResource( 34 )
+volume_db = -10.0
+
+[node name="bang3" type="AudioStreamPlayer" parent="bangs"]
+stream = ExtResource( 33 )
+volume_db = -10.0
+
+[node name="bang4" type="AudioStreamPlayer" parent="bangs"]
+stream = ExtResource( 32 )
+volume_db = -10.0
+
+[node name="machineBang" type="AudioStreamPlayer" parent="bangs"]
+stream = ExtResource( 8 )
+
+[node name="traySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 36 )
+volume_db = 6.0
+
+[node name="poof" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 37 )
+volume_db = -6.0
+pitch_scale = 1.3
 [connection signal="timeout" from="Timer" to="CanvasLayer/Intro" method="_on_Timer_timeout"]
-[connection signal="body_entered" from="all2Coins/RigidBody2D" to="." method="_on_RigidBody2D_body_entered"]
 [connection signal="body_entered" from="all2Coins/RigidBody2D2" to="." method="_on_RigidBody2D_body_entered"]
 [connection signal="body_entered" from="all2Coins/RigidBody2D3" to="." method="_on_RigidBody2D_body_entered"]
-[connection signal="body_entered" from="all2Coins/RigidBody2D4" to="." method="_on_RigidBody2D_body_entered"]
-[connection signal="body_entered" from="all2Coins/RigidBody2D5" to="." method="_on_RigidBody2D_body_entered"]
 [connection signal="body_entered" from="allOutOfBounds/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="allOutOfBounds/Area2D2" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="allOutOfBounds/Area2D5" to="." method="_on_Area2D_body_entered"]

@@ -1,12 +1,13 @@
 extends Control
 
 var dialog = [
-	"Keep as much change as you can!",
-	"Tap anywhere to bang on the machine!",
+	"Man, what a dumpy coin machine... I hope you can get your money back!",
+	"Keep as much change as you can by tapping anywhere to bang on the machine!",
+	"Collect 10 coins to move on to the next level!",
 ]
 
 var dialog_index = 0
-var finished = false
+
 
 func _ready():
 	$DialogBox.visible = false
@@ -16,6 +17,7 @@ func _process(delta):
 		load_dialog()
 	
 func load_dialog():
+
 	if dialog_index < dialog.size():
 		$DialogBox/ColorRect/RichTextLabel.bbcode_text = dialog[dialog_index]
 		$DialogBox/ColorRect/RichTextLabel.percent_visible = 0
@@ -24,13 +26,14 @@ func load_dialog():
 		)
 		$DialogBox/Tween.start()
 	else:
-		queue_free()
+		$"/root/Global".dialogCanRun = false
 		$DialogBox.visible = false
 		get_tree().paused = false
 	dialog_index += 1
 
 
 func _on_Timer_timeout():
-	get_tree().paused = true
-	$DialogBox.visible = true
-	load_dialog()
+	if $"/root/Global".dialogCanRun == true:
+		get_tree().paused = true
+		$DialogBox.visible = true
+		load_dialog()

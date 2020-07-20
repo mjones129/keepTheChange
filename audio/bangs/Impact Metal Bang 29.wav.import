@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Impact Metal Bang 29.wav-051ef74139c79b428aff2113c2c7b459.sample"
+
+[deps]
+
+source_file="res://audio/bangs/Impact Metal Bang 29.wav"
+dest_files=[ "res://.import/Impact Metal Bang 29.wav-051ef74139c79b428aff2113c2c7b459.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

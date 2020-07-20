@@ -1,6 +1,7 @@
 extends Control
 
 var dialog = [
+	"Man, what a dumpy coin machine... I hope you can get your money back!",
 	"Tap anywhere to hit the machine!",
 	"This is another line of dialog just for testing purposes.",
 	"Also, I always thought dialog was spelled dialogue."

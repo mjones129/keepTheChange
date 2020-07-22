@@ -1,14 +1,14 @@
-extends StaticBody2D
+extends Area2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var clinks = []
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	for i in $allClinks.get_children():
+		clinks.append(i)
 
-func _physics_process(delta):
-	pass
+
+func _on_rail_body_entered(body):
+	clinks.shuffle()
+	clinks[0].play()

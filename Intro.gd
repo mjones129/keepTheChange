@@ -2,8 +2,8 @@ extends Control
 
 var dialog = [
 	"Man, what a dumpy coin machine... I hope you can get your money back!",
-	"Keep as much change as you can by tapping anywhere to bang on the machine!",
-	"Collect 10 coins to move on to the next level!",
+	"Tap anywhere to bang on the machine and bump the coins!",
+	"Get all coins in the funnel to move on to the next level!",
 ]
 
 var dialog_index = 0

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://billInsert.webm" type="VideoStream" id=1]
+[ext_resource path="res://BillInsert_theora.ogv" type="VideoStream" id=1]
 [ext_resource path="res://IntroCutscene.gd" type="Script" id=2]
 
 [node name="IntroCutscene" type="Control"]

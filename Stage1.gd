@@ -6,7 +6,7 @@ var coin = load("res://coin2.tscn")
 
 
 func _ready():
-	add_new_coins()
+#	add_new_coins()
 	#loop through all bang sounds and put them in bangs []
 	
 #	connect_coins()
@@ -17,7 +17,7 @@ func _ready():
 	gather_coins()
 
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	#set camera position
 	positionCamera()
 	#bang on the machine
@@ -30,14 +30,26 @@ func _physics_process(_delta):
 	#display final score
 	$CanvasLayer/Control/HBoxContainer/finalScore.set_text("FINAL SCORE: " + str($"/root/Global".finalScore))
 	
-	#End Game Logic
-	if $"/root/Global".allCoins.size() == 0:
+	#rotate fan
+	$fan.rotate(1.5 * delta)
+	
+	#rotate brown gears
+	$ParallaxBackground/ParallaxLayer/brownGear1.rotate(.5 * delta)
+	$ParallaxBackground/ParallaxLayer/brownGear2.rotate(-0.5 * delta)
+	$ParallaxBackground/ParallaxLayer/brownGear3.rotate(.5 * delta)
+	
+	#rotate rail3
+	$allRails/rail3.rotate(.5 * delta)
+	
+	#Game Logic ======================================================	
+	if $"/root/Global".allCoins.size() == 0 && $"/root/Global".finalScore == 0:
 		$"/root/Global".dialogCanRun = false
-		get_tree().reload_current_scene()
-#		add_new_coins()
-#		gather_bangs()
-#		gather_coins()
-		
+		get_tree().change_scene("res://youLose.tscn")
+	
+	if $"/root/Global".allCoins.size() == 0 && $"/root/Global".finalScore == 1:
+		get_tree().change_scene("res://Stage2Intro.tscn")
+	#============================================================================
+
 func addEverything():
 	var sum = Vector2(0, 0)
 	for i in range(0, $"/root/Global".allCoins.size()):
@@ -72,9 +84,9 @@ func connect_coins():
 #	for i in $Control.get_children():
 #		pings.append(i)
 
-func add_new_coins():
-	for i in $"/root/Global".finalScore:
-		get_node("all2Coins").add_child(coin.instance())
+#func add_new_coins():
+#	for i in $"/root/Global".finalScore:
+#		get_node("all2Coins").add_child(coin.instance())
 
 
 func gather_coins():

@@ -3,7 +3,6 @@
 [ext_resource path="res://TouchControl.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 550, 325 )
 
 [node name="TouchControl" type="Control"]
 pause_mode = 2
@@ -27,6 +26,7 @@ __meta__ = {
 }
 
 [node name="jumpButton" type="TouchScreenButton" parent="Control"]
+scale = Vector2( 500, 300 )
 shape = SubResource( 1 )
 action = "jump"
 

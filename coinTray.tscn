@@ -1,15 +1,18 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://coinTray.png" type="Texture" id=1]
+[ext_resource path="res://funnel2.png" type="Texture" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 93.7079, 10 )
 
 [node name="coinTray" type="Area2D"]
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 1 )
+offset = Vector2( 0, 175 )

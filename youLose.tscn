@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://youLose.png" type="Texture" id=1]
+[ext_resource path="res://fonts/ratchet-clank-psp.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://youLose.gd" type="Script" id=3]
+[ext_resource path="res://TouchControl.tscn" type="PackedScene" id=4]
+[ext_resource path="res://audio/gameOver.wav" type="AudioStream" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+font_data = ExtResource( 2 )
+
+[node name="youLose" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TouchControl" parent="." instance=ExtResource( 4 )]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_bottom = 1.0
+margin_left = 45.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+margin_right = 500.0
+margin_bottom = 246.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+margin_top = 250.0
+margin_right = 500.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 500, 100 )
+size_flags_horizontal = 3
+custom_fonts/normal_font = SubResource( 1 )
+text = "Your money
+went bye bye!"
+
+[node name="Control2" type="Control" parent="VBoxContainer"]
+margin_top = 354.0
+margin_right = 500.0
+margin_bottom = 600.0
+size_flags_vertical = 3
+
+[node name="gameOver" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true

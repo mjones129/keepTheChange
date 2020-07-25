@@ -1,0 +1,367 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://outOfBounds.tscn" type="PackedScene" id=1]
+[ext_resource path="res://rail.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Stage2.gd" type="Script" id=3]
+[ext_resource path="res://audio/insert-coin.ogg" type="AudioStream" id=5]
+[ext_resource path="res://TouchControl.tscn" type="PackedScene" id=6]
+[ext_resource path="res://brownGear.png" type="Texture" id=7]
+[ext_resource path="res://audio/metal-bang-1.ogg" type="AudioStream" id=8]
+[ext_resource path="res://coin2.tscn" type="PackedScene" id=9]
+[ext_resource path="res://blueBG.png" type="Texture" id=10]
+[ext_resource path="res://fan2.png" type="Texture" id=11]
+[ext_resource path="res://fanCase.png" type="Texture" id=12]
+[ext_resource path="res://coinTray.tscn" type="PackedScene" id=21]
+[ext_resource path="res://fonts/ratchet-clank-psp.ttf" type="DynamicFontData" id=22]
+[ext_resource path="res://arrowRight.png" type="Texture" id=23]
+[ext_resource path="res://arrowDown.png" type="Texture" id=24]
+[ext_resource path="res://Camera2D.gd" type="Script" id=31]
+[ext_resource path="res://audio/bangs/Impact Metal Bang With Rebound 01.wav" type="AudioStream" id=32]
+[ext_resource path="res://audio/bangs/Impact Metal Bang 29.wav" type="AudioStream" id=33]
+[ext_resource path="res://audio/bangs/Impact Metal Bang 02.wav" type="AudioStream" id=34]
+[ext_resource path="res://audio/bangs/Impact Metal Bang 01.wav" type="AudioStream" id=35]
+[ext_resource path="res://audio/Slot machine win - single coin falling into pay out slot 4.wav" type="AudioStream" id=36]
+[ext_resource path="res://audio/poof.wav" type="AudioStream" id=37]
+
+[sub_resource type="DynamicFont" id=1]
+size = 30
+font_data = ExtResource( 22 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+font_data = ExtResource( 22 )
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Area2D
+
+onready var Stage1 = load(\"res://Stage1.gd\").new()
+
+func _ready():
+#	self.connect(\"area_entered\", Stage1, \"gather_coins()\")
+	pass
+
+func _physics_process(_delta):
+	pass
+
+
+
+"
+
+[node name="Stage2" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+pause_mode = 2
+
+[node name="TouchControl" parent="CanvasLayer" instance=ExtResource( 6 )]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control"]
+anchor_right = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+size_flags_horizontal = 7
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+custom_constants/separation = 1
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="coinsRemaining" type="RichTextLabel" parent="CanvasLayer/Control/HBoxContainer"]
+margin_right = 314.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+rect_clip_content = false
+size_flags_horizontal = 7
+size_flags_vertical = 3
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_text = "Coins Remaining: 100"
+text = "Coins Remaining: 100"
+scroll_active = false
+
+[node name="Control2" type="Control" parent="CanvasLayer/Control/HBoxContainer"]
+margin_left = 315.0
+margin_right = 629.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+
+[node name="finalScore" type="RichTextLabel" parent="CanvasLayer/Control/HBoxContainer"]
+margin_left = 630.0
+margin_right = 944.0
+margin_bottom = 50.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 0, 50 )
+rect_clip_content = false
+size_flags_horizontal = 7
+size_flags_vertical = 3
+custom_fonts/normal_font = SubResource( 2 )
+bbcode_text = "FINAL SCORE:"
+text = "FINAL SCORE:"
+
+[node name="insertCoin" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 5 )
+autoplay = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="allRails" type="Node2D" parent="."]
+
+[node name="rail2" parent="allRails" instance=ExtResource( 2 )]
+position = Vector2( 59.9788, 970.109 )
+rotation = 0.574213
+
+[node name="rail13" parent="allRails" instance=ExtResource( 2 )]
+position = Vector2( 238.333, 1137.08 )
+rotation = 0.574213
+
+[node name="rail4" parent="allRails" instance=ExtResource( 2 )]
+position = Vector2( 2362.4, 1930.62 )
+rotation = -1.35961
+
+[node name="rail5" parent="allRails" instance=ExtResource( 2 )]
+position = Vector2( 489.593, 995.725 )
+rotation = -0.453786
+
+[node name="rail6" parent="allRails" instance=ExtResource( 2 )]
+position = Vector2( 134.606, 1721.64 )
+rotation = 0.567232
+
+[node name="rail7" parent="allRails" instance=ExtResource( 2 )]
+position = Vector2( 352.898, 1831.11 )
+rotation = 0.13439
+
+[node name="rail8" parent="allRails" instance=ExtResource( 2 )]
+position = Vector2( 916.844, 1857.07 )
+rotation = -0.940732
+
+[node name="rail9" parent="allRails" instance=ExtResource( 2 )]
+position = Vector2( 651.921, 1884.36 )
+rotation = 0.0872665
+
+[node name="rail10" parent="allRails" instance=ExtResource( 2 )]
+position = Vector2( 1094.94, 1865.64 )
+rotation = 0.947714
+
+[node name="rail11" parent="allRails" instance=ExtResource( 2 )]
+position = Vector2( 1565.62, 2037.55 )
+rotation = -0.42586
+
+[node name="rail14" parent="allRails" instance=ExtResource( 2 )]
+position = Vector2( 2275.24, 2177.96 )
+rotation = -0.42586
+
+[node name="rail12" parent="allRails" instance=ExtResource( 2 )]
+position = Vector2( 1861.95, 2078.42 )
+rotation = 0.0855211
+
+[node name="rail" parent="allRails" instance=ExtResource( 2 )]
+position = Vector2( 1302.23, 2012.85 )
+rotation = 0.380482
+
+[node name="all2Coins" type="Node2D" parent="."]
+
+[node name="RigidBody2D" parent="all2Coins" instance=ExtResource( 9 )]
+position = Vector2( 198.362, 722.903 )
+
+[node name="RigidBody2D2" parent="all2Coins" instance=ExtResource( 9 )]
+position = Vector2( 227.818, 509.087 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 1.75, 1.75 )
+limit_left = -10000
+limit_top = -10000
+limit_right = 10000
+limit_bottom = 10000
+limit_smoothed = true
+smoothing_enabled = true
+editor_draw_limits = true
+script = ExtResource( 31 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.5, 0.5 )
+motion_mirroring = Vector2( 2880, 2880 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+modulate = Color( 0.854902, 0.854902, 0.854902, 1 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 10 )
+centered = false
+offset = Vector2( 0, -250 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="brownGear1" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 1130.45, 1098.74 )
+texture = ExtResource( 7 )
+
+[node name="brownGear2" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 1207.29, 1287.16 )
+texture = ExtResource( 7 )
+
+[node name="brownGear3" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 1393.39, 1363.41 )
+texture = ExtResource( 7 )
+
+[node name="allOutOfBounds" type="Node2D" parent="."]
+
+[node name="Area2D" parent="allOutOfBounds" instance=ExtResource( 1 )]
+position = Vector2( 2246.24, 2912.96 )
+rotation = -0.294961
+
+[node name="Area2D2" parent="allOutOfBounds" instance=ExtResource( 1 )]
+position = Vector2( 745.972, 2199.52 )
+script = SubResource( 3 )
+
+[node name="Area2D5" parent="allOutOfBounds" instance=ExtResource( 1 )]
+position = Vector2( 1478.53, 2202.83 )
+script = SubResource( 3 )
+
+[node name="Area2D4" parent="allOutOfBounds" instance=ExtResource( 1 )]
+position = Vector2( -516.591, 1846.3 )
+rotation = 0.881391
+script = SubResource( 3 )
+
+[node name="Area2D8" parent="allOutOfBounds" instance=ExtResource( 1 )]
+position = Vector2( -742.408, 1201.13 )
+rotation = 1.5708
+script = SubResource( 3 )
+
+[node name="Area2D10" parent="allOutOfBounds" instance=ExtResource( 1 )]
+position = Vector2( -730.968, 491.852 )
+rotation = 1.5708
+script = SubResource( 3 )
+
+[node name="Area2D11" parent="allOutOfBounds" instance=ExtResource( 1 )]
+position = Vector2( -730.968, -251.75 )
+rotation = 1.5708
+script = SubResource( 3 )
+
+[node name="Area2D7" parent="allOutOfBounds" instance=ExtResource( 1 )]
+position = Vector2( 47.9019, 2162.56 )
+script = SubResource( 3 )
+
+[node name="Area2D3" parent="allOutOfBounds" instance=ExtResource( 1 )]
+position = Vector2( 1700.83, 2711.51 )
+rotation = 0.95644
+script = SubResource( 3 )
+
+[node name="Area2D6" parent="allOutOfBounds" instance=ExtResource( 1 )]
+position = Vector2( 2756.45, 2481.13 )
+rotation = -1.1013
+script = SubResource( 3 )
+
+[node name="Area2D9" parent="allOutOfBounds" instance=ExtResource( 1 )]
+position = Vector2( 2924.09, 1803.62 )
+rotation = 1.5708
+script = SubResource( 3 )
+
+[node name="Area2D12" parent="allOutOfBounds" instance=ExtResource( 1 )]
+position = Vector2( 2918.37, 1077.18 )
+rotation = 1.5708
+script = SubResource( 3 )
+
+[node name="coinTray" parent="." instance=ExtResource( 21 )]
+position = Vector2( 2073.54, 2180.55 )
+
+[node name="bangs" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bang1" type="AudioStreamPlayer" parent="bangs"]
+stream = ExtResource( 35 )
+volume_db = -10.0
+
+[node name="bang2" type="AudioStreamPlayer" parent="bangs"]
+stream = ExtResource( 34 )
+volume_db = -10.0
+
+[node name="bang3" type="AudioStreamPlayer" parent="bangs"]
+stream = ExtResource( 33 )
+volume_db = -10.0
+
+[node name="bang4" type="AudioStreamPlayer" parent="bangs"]
+stream = ExtResource( 32 )
+volume_db = -10.0
+
+[node name="machineBang" type="AudioStreamPlayer" parent="bangs"]
+stream = ExtResource( 8 )
+
+[node name="traySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 36 )
+volume_db = 6.0
+
+[node name="poof" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 37 )
+volume_db = -6.0
+pitch_scale = 1.3
+
+[node name="fanCaase" type="Sprite" parent="."]
+position = Vector2( 238.326, 989.961 )
+z_index = -1
+texture = ExtResource( 12 )
+
+[node name="fan" type="Sprite" parent="."]
+position = Vector2( 238.326, 989.961 )
+z_index = -1
+texture = ExtResource( 11 )
+
+[node name="arrowRight" type="Sprite" parent="."]
+position = Vector2( 699.542, 1312.8 )
+rotation = 0.21293
+scale = Vector2( 0.5, 0.5 )
+z_index = -1
+texture = ExtResource( 23 )
+
+[node name="arrowDown" type="Sprite" parent="."]
+position = Vector2( 259.981, 675.247 )
+scale = Vector2( 0.5, 0.5 )
+z_index = -1
+texture = ExtResource( 24 )
+
+[node name="arrowDown2" type="Sprite" parent="."]
+position = Vector2( 2105.38, 1645.99 )
+scale = Vector2( 0.5, 0.5 )
+z_index = -1
+texture = ExtResource( 24 )
+[connection signal="body_entered" from="allOutOfBounds/Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="allOutOfBounds/Area2D2" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="allOutOfBounds/Area2D5" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="allOutOfBounds/Area2D4" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="allOutOfBounds/Area2D8" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="allOutOfBounds/Area2D10" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="allOutOfBounds/Area2D11" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="allOutOfBounds/Area2D7" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="allOutOfBounds/Area2D3" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="allOutOfBounds/Area2D6" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="allOutOfBounds/Area2D9" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="allOutOfBounds/Area2D12" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="coinTray" to="." method="_on_coinTray_body_entered"]
